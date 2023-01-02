@@ -1,0 +1,84 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "Mebius Hub | UNIVERSAL", HidePremium = false, IntroText = "Mebius Hub", SaveConfig = true, ConfigFolder = "OrionTest"})
+
+-- Values
+
+
+
+-- Tabs
+local Player = Window:MakeTab({
+	Name = "Player",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local GameTab = Window:MakeTab({
+	Name = "Game",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+-- Game tab
+
+
+GameTab:AddButton({
+	Name = "Rejoin!",
+	Callback = function()
+        game:GetService'TeleportService':TeleportToPlaceInstance(game.PlaceId,game.JobId,game:GetService'Players'.LocalPlayer)
+      		print("rejoin")
+  	end    
+})
+
+
+
+-- Player tab
+
+Player:AddSlider({
+	Name = "Walk Speed",
+	Min = 1,
+	Max = 500,
+	Default = 16,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "Speed",
+	Callback = function(Value)
+		print(Value)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+	end    
+})
+
+Player:AddSlider({
+	Name = "Jump Power",
+	Min = 1,
+	Max = 200,
+	Default = 50,
+	Color = Color3.fromRGB(255,255,255),
+	Increment = 1,
+	ValueName = "JumpPower",
+	Callback = function(Value)
+		print(Value)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
+	end    
+})
+
+GameTab:AddToggle({
+    Name = "mEbius On Top (nowork)",
+    Default = false,
+    Callback = function(Value)
+        print(Value)
+        _G.on = Value
+
+        while wait(1) do
+        
+        if _G.on == true then
+        
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SaymessageRequest:FireServer("mEbius On Top","all")
+        end
+        end
+    end   
+})
+
+
+
+
+OrionLib:Init()
