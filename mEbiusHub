@@ -282,7 +282,13 @@ prot:AddButton({
 
 --world
 
-
+world:AddButton({
+	Name = "Full Bright",
+	Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/06iG6YkU", true))()
+      	print("bye")
+  	end    
+})
 
 
 --ignore
